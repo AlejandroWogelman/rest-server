@@ -1,18 +1,26 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
+const { dbConection } = require("../database/config");
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
     this.usariosPath = "/api/usuarios";
+    this.authPath = "/api/auth";
+
+    //Conectar a DB
+    this.conectarDB();
 
     //middlewares (Funciones que añaden funcionalidad, se ejecutan siempre al levantar server)
     this.middlewares();
 
     //Ruta de la APP
     this.routes();
+  }
+
+  async conectarDB() {
+    await dbConection();
   }
 
   //  "USE" palabra clave para saber que es un middleware
@@ -27,6 +35,7 @@ class Server {
   }
 
   routes() {
+    this.app.use(this.authPath, require("../routes/auth"));
     this.app.use(this.usariosPath, require("../routes/usuarios"));
   }
 
