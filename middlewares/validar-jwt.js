@@ -24,7 +24,7 @@ const validateJWT = async (req = request, res = response, next) => {
       });
     }
 
-    //Validamos si el usuario tiene estado TRUE
+    //Validamos si el usuario tiene estado FALSE/eliminado
     if (!usuario.estado) {
       return res.status(401).json({
         msg: "Token no válido  --- Usuario estado false",

@@ -30,9 +30,6 @@ const UsuarioSchema = Schema({
     type: Boolean,
     default: false,
   },
-  uid: {
-    type: Schema.Types.UUID,
-  },
 });
 
 //SOBREESCRIBIR LOS METODOS

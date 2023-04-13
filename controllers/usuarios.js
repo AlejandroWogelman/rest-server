@@ -78,7 +78,15 @@ const usuariosDelete = async (req, res) => {
   //De esta forma no perdemos informacion del usuario eliminado
   //Al consultar por los usuarios se mostrará como "eliminado" gracias a la validacion del GET
 
+  //Sabemos a qué usuario pertenece el TOKEN
   const usuarioAutenticado = req.usuario;
+
+  //Revisamos si tiene un rol que permita la accion de eliminar
+  if (usuarioAutenticado.rol !== "ADMIN_ROLE") {
+    return res.status(401).json({
+      msg: "Usuario no autorizado -- ROL NO AUTORIZADO",
+    });
+  }
 
   res.json({
     usuarioBorrado: usuario,
