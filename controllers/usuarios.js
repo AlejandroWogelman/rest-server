@@ -82,11 +82,11 @@ const usuariosDelete = async (req, res) => {
   const usuarioAutenticado = req.usuario;
 
   //Revisamos si tiene un rol que permita la accion de eliminar
-  if (usuarioAutenticado.rol !== "ADMIN_ROLE") {
+  /*   if (usuarioAutenticado.rol !== "ADMIN_ROLE") {
     return res.status(401).json({
       msg: "Usuario no autorizado -- ROL NO AUTORIZADO",
     });
-  }
+  } */
 
   res.json({
     usuarioBorrado: usuario,
